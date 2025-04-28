@@ -13,7 +13,7 @@ importers:
         version: 1.3.20(zod@3.24.1)
       '@cloudflare/workers-types':
         specifier: latest
-        version: 4.20250427.0
+        version: 4.20250428.0
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.54.1(react@19.0.0))
@@ -169,7 +169,7 @@ importers:
         version: 1.0.4(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       composio-core:
         specifier: latest
-        version: 0.5.33(@ai-sdk/openai@1.3.20(zod@3.24.1))(@cloudflare/workers-types@4.20250427.0)(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1)))(@langchain/openai@0.5.7(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1))))(ai@4.3.10(react@19.0.0)(zod@3.24.1))(langchain@0.3.24(30ba95938b4913e231a7c9444d5ce7aa))(openai@4.96.0(zod@3.24.1))
+        version: 0.5.33(@ai-sdk/openai@1.3.20(zod@3.24.1))(@cloudflare/workers-types@4.20250428.0)(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1)))(@langchain/openai@0.5.7(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1))))(ai@4.3.10(react@19.0.0)(zod@3.24.1))(langchain@0.3.24(30ba95938b4913e231a7c9444d5ce7aa))(openai@4.96.0(zod@3.24.1))
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -467,8 +467,8 @@ packages:
   '@cfworker/json-schema@4.1.1':
     resolution: {integrity: sha512-gAmrUZSGtKc3AiBL71iNWxDsyUC5uMaKKGdvzYsBoTW/xi42JQHl7eKV2OYzCUqvc+D2RCcf7EXY2iCyFIk6og==}
 
-  '@cloudflare/workers-types@4.20250427.0':
-    resolution: {integrity: sha512-5RLld1Bf5W2EE06bnE5qdicx1AtfF3LT+YD93cR32yKDNridHeBriWO8/pMZG7JmURdHEwyXyIV4gtdPzDPNdw==}
+  '@cloudflare/workers-types@4.20250428.0':
+    resolution: {integrity: sha512-r/K1xuR+lW6SeGKRloVdR+BnK+9shBQci717070EBB2VLbcrZCCh0eo6NweLFa1rD8use5rE5JTVDZ/mXqMeNg==}
 
   '@composio/mcp@1.0.3-0':
     resolution: {integrity: sha512-IpbfST0SSs/CEv+PIf6+EL0feNuJhQyUrOHJLPge8NhyLLrCyVqvujRIPyRUUjy0NDsked/Mm5VpJmYM6OACbg==}
@@ -1838,8 +1838,8 @@ packages:
   '@types/node@22.0.0':
     resolution: {integrity: sha512-VT7KSYudcPOzP5Q0wfbowyNLaVR8QWUdw+088uFWwfvpY6uCWaXpqV6ieLAu9WBcnTa7H4Z5RLK8I5t2FuOcqw==}
 
-  '@types/node@22.15.2':
-    resolution: {integrity: sha512-uKXqKN9beGoMdBfcaTY1ecwz6ctxuJAcUlwE55938g0ZJ8lRxwAZqRz2AJ4pzpt5dHdTPMB863UZ0ESiFUcP7A==}
+  '@types/node@22.15.3':
+    resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
 
   '@types/react-dom@19.0.0':
     resolution: {integrity: sha512-1KfiQKsH1o00p9m5ag12axHQSb3FOU9H20UTrujVSkNhuCrRHiQWFqgEnTNK5ZNfnzZv8UWrnXVqCmCF9fgY3w==}
@@ -4201,7 +4201,7 @@ snapshots:
 
   '@cfworker/json-schema@4.1.1': {}
 
-  '@cloudflare/workers-types@4.20250427.0': {}
+  '@cloudflare/workers-types@4.20250428.0': {}
 
   '@composio/mcp@1.0.3-0': {}
 
@@ -4339,7 +4339,7 @@ snapshots:
       '@inquirer/figures': 1.0.11
       '@inquirer/type': 2.0.0
       '@types/mute-stream': 0.0.4
-      '@types/node': 22.15.2
+      '@types/node': 22.15.3
       '@types/wrap-ansi': 3.0.0
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
@@ -5781,7 +5781,7 @@ snapshots:
     dependencies:
       undici-types: 6.11.1
 
-  '@types/node@22.15.2':
+  '@types/node@22.15.3':
     dependencies:
       undici-types: 6.21.0
 
@@ -6055,10 +6055,10 @@ snapshots:
 
   commander@4.1.1: {}
 
-  composio-core@0.5.33(@ai-sdk/openai@1.3.20(zod@3.24.1))(@cloudflare/workers-types@4.20250427.0)(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1)))(@langchain/openai@0.5.7(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1))))(ai@4.3.10(react@19.0.0)(zod@3.24.1))(langchain@0.3.24(30ba95938b4913e231a7c9444d5ce7aa))(openai@4.96.0(zod@3.24.1)):
+  composio-core@0.5.33(@ai-sdk/openai@1.3.20(zod@3.24.1))(@cloudflare/workers-types@4.20250428.0)(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1)))(@langchain/openai@0.5.7(@langchain/core@0.3.49(openai@4.96.0(zod@3.24.1))))(ai@4.3.10(react@19.0.0)(zod@3.24.1))(langchain@0.3.24(30ba95938b4913e231a7c9444d5ce7aa))(openai@4.96.0(zod@3.24.1)):
     dependencies:
       '@ai-sdk/openai': 1.3.20(zod@3.24.1)
-      '@cloudflare/workers-types': 4.20250427.0
+      '@cloudflare/workers-types': 4.20250428.0
       '@composio/mcp': 1.0.3-0
       '@hey-api/client-axios': 0.2.12(axios@1.9.0)
       '@langchain/core': 0.3.49(openai@4.96.0(zod@3.24.1))
