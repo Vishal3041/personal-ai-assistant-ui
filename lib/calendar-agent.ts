@@ -5,42 +5,37 @@ import { LangchainToolSet } from "composio-core"
 
 // Initialize the language model
 export const initializeCalendarAgent = async () => {
-  try {
-    const llm = new ChatOpenAI({
-      model: process.env.MODEL || "gpt-4o",
-      apiKey: process.env.OPENAI_API_KEY,
-    })
+  const llm = new ChatOpenAI({
+    model: process.env.MODEL || "gpt-4o",
+    apiKey: process.env.OPENAI_API_KEY,
+  })
 
-    // Define tools for the agents
-    const composioToolset = new LangchainToolSet({
-      apiKey: process.env.COMPOSIO_API_KEY,
-    })
+  // Define tools for the agents
+  const composioToolset = new LangchainToolSet({
+    apiKey: process.env.COMPOSIO_API_KEY,
+  })
 
-    // Get calendar tools
-    const tools = await composioToolset.getTools({
-      actions: ["googlecalendar_create_event", "googlecalendar_list_events"],
-    })
+  // Get calendar tools
+  const tools = await composioToolset.getTools({
+    actions: ["googlecalendar_create_event", "googlecalendar_list_events"],
+  })
 
-    // Get the prompt
-    const prompt = await pull("hwchase17/openai-functions-agent")
+  // Get the prompt
+  const prompt = await pull("hwchase17/openai-functions-agent")
 
-    // Create the agent
-    const agent = await createOpenAIFunctionsAgent({
-      llm,
-      tools,
-      prompt,
-    })
+  // Create the agent
+  const agent = await createOpenAIFunctionsAgent({
+    llm,
+    tools,
+    prompt,
+  })
 
-    // Return the agent executor
-    return new AgentExecutor({
-      agent,
-      tools,
-      verbose: true,
-    })
-  } catch (error) {
-    console.error("Error initializing calendar agent:", error)
-    throw new Error(`Failed to initialize calendar agent: ${error.message}`)
-  }
+  // Return the agent executor
+  return new AgentExecutor({
+    agent,
+    tools,
+    verbose: true,
+  })
 }
 
 // Helper functions
@@ -66,3 +61,4 @@ export const getTimezone = () => {
       return timezone
   }
 }
+

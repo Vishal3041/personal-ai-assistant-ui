@@ -83,7 +83,7 @@ export default function CalendarAssistantPage() {
         body: JSON.stringify({
           query: message,
           email: email,
-          simulationMode: isSimulationMode, // Use the actual state instead of hardcoding to true
+          simulationMode: true, // Always use simulation mode for now
         }),
       })
 
@@ -240,15 +240,14 @@ export default function CalendarAssistantPage() {
           </AlertDescription>
         </Alert>
       )}
-      <div className="min-h-[calc(100vh-6rem)]">
-        <ChatInterface
-          title="Calendar Assistant"
-          icon={<LucideCalendar className="h-5 w-5 text-green-600" />}
-          initialMessages={messages}
-          onSendMessage={handleSendMessage}
-          placeholder="Ask to create events, check availability..."
-        />
-      </div>
+      <ChatInterface
+        title="Calendar Assistant"
+        icon={<LucideCalendar className="h-5 w-5 text-green-600" />}
+        initialMessages={messages}
+        onSendMessage={handleSendMessage}
+        placeholder="Ask to create events, check availability..."
+      />
     </AssistantLayout>
   )
 }
+

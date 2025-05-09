@@ -47,3 +47,4 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Failed to check model info", details: error.message }, { status: 500 })
   }
 }
+

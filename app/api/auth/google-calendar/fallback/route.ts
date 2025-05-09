@@ -7,3 +7,4 @@ export async function GET(request: Request) {
   // Always redirect to simulation mode
   return NextResponse.redirect(`${url.origin}/assistants/calendar?auth=simulation`)
 }
+

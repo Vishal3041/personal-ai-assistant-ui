@@ -129,3 +129,4 @@ export async function queryCalendarAssistant(query: string): Promise<CalendarRes
 
   return response.json()
 }
+

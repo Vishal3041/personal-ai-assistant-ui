@@ -24,3 +24,4 @@ export function AssistantLayout({ children }: AssistantLayoutProps) {
     </div>
   )
 }
+
