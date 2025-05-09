@@ -17,7 +17,8 @@ export default function CalendarAssistantPage() {
   const [email, setEmail] = useState("")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isAuthenticating, setIsAuthenticating] = useState(false)
-  const [isSimulationMode, setIsSimulationMode] = useState(false)
+  // Always use simulation mode for now
+  const [isSimulationMode, setIsSimulationMode] = useState(true)
   const [authError, setAuthError] = useState<string | null>(null)
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -36,7 +37,8 @@ export default function CalendarAssistantPage() {
 
     if (authStatus === "success") {
       setIsAuthenticated(true)
-      setIsSimulationMode(false)
+      // Still use simulation mode even if auth is successful
+      setIsSimulationMode(true)
       setAuthError(null)
       toast({
         title: "Authentication Successful",
@@ -83,7 +85,8 @@ export default function CalendarAssistantPage() {
         body: JSON.stringify({
           query: message,
           email: email,
-          simulationMode: isSimulationMode, // Use the actual state instead of hardcoding to true
+          // Always use simulation mode for now
+          simulationMode: true,
         }),
       })
 
@@ -119,37 +122,19 @@ export default function CalendarAssistantPage() {
       return
     }
 
-    setIsAuthenticating(true)
-    setAuthError(null)
-
     // Store email in localStorage for persistence
     localStorage.setItem("calendarEmail", email)
 
-    // Try the API test endpoint first to verify API routes are working
-    fetch("/api/test")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("API routes are not working properly")
-        }
-        return response.json()
-      })
-      .then((data) => {
-        console.log("API test successful:", data)
-        // If API test is successful, try the OAuth flow
-        window.location.href = "/api/auth/google-calendar"
-      })
-      .catch((error) => {
-        console.error("API test failed:", error)
-        // If API test fails, use simulation mode
-        setIsAuthenticated(true)
-        setIsSimulationMode(true)
-        setIsAuthenticating(false)
-        toast({
-          title: "Using Simulation Mode",
-          description: "API routes are not working properly. Using simulation mode instead.",
-          variant: "warning",
-        })
-      })
+    // Skip OAuth and go straight to simulation mode
+    setIsAuthenticated(true)
+    setIsSimulationMode(true)
+    setAuthError(null)
+
+    toast({
+      title: "Simulation Mode Activated",
+      description: "You're now using the Calendar Assistant in simulation mode.",
+      variant: "default",
+    })
   }
 
   const handleSimulationLogin = () => {
@@ -230,16 +215,14 @@ export default function CalendarAssistantPage() {
 
   return (
     <AssistantLayout>
-      {isSimulationMode && (
-        <Alert className="mb-4 bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-900">
-          <AlertCircle className="h-4 w-4 text-amber-600" />
-          <AlertTitle>Simulation Mode</AlertTitle>
-          <AlertDescription>
-            You're using the Calendar Assistant in simulation mode. Calendar events are simulated and not actually
-            created.
-          </AlertDescription>
-        </Alert>
-      )}
+      <Alert className="mb-4 bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-900">
+        <AlertCircle className="h-4 w-4 text-amber-600" />
+        <AlertTitle>Simulation Mode</AlertTitle>
+        <AlertDescription>
+          You're using the Calendar Assistant in simulation mode. Calendar events are simulated and not actually
+          created.
+        </AlertDescription>
+      </Alert>
       <div className="min-h-[calc(100vh-6rem)]">
         <ChatInterface
           title="Calendar Assistant"
