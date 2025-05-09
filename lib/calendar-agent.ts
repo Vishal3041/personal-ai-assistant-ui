@@ -1,41 +1,50 @@
-import { ChatOpenAI } from "@langchain/openai"
-import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents"
-import { pull } from "langchain/hub"
-import { LangchainToolSet } from "composio-core"
+// Import types conditionally to avoid build errors
+type AgentExecutorType = any
 
 // Initialize the language model
-export const initializeCalendarAgent = async () => {
-  const llm = new ChatOpenAI({
-    model: process.env.MODEL || "gpt-4o",
-    apiKey: process.env.OPENAI_API_KEY,
-  })
+export const initializeCalendarAgent = async (): Promise<AgentExecutorType> => {
+  try {
+    // Dynamically import dependencies to avoid build-time errors
+    const { ChatOpenAI } = await import("@langchain/openai")
+    const { AgentExecutor, createOpenAIFunctionsAgent } = await import("langchain/agents")
+    const { pull } = await import("langchain/hub")
+    const { LangchainToolSet } = await import("composio-core")
 
-  // Define tools for the agents
-  const composioToolset = new LangchainToolSet({
-    apiKey: process.env.COMPOSIO_API_KEY,
-  })
+    const llm = new ChatOpenAI({
+      model: process.env.MODEL || "gpt-4o",
+      apiKey: process.env.OPENAI_API_KEY,
+    })
 
-  // Get calendar tools
-  const tools = await composioToolset.getTools({
-    actions: ["googlecalendar_create_event", "googlecalendar_list_events"],
-  })
+    // Define tools for the agents
+    const composioToolset = new LangchainToolSet({
+      apiKey: process.env.COMPOSIO_API_KEY,
+    })
 
-  // Get the prompt
-  const prompt = await pull("hwchase17/openai-functions-agent")
+    // Get calendar tools
+    const tools = await composioToolset.getTools({
+      actions: ["googlecalendar_create_event", "googlecalendar_list_events"],
+    })
 
-  // Create the agent
-  const agent = await createOpenAIFunctionsAgent({
-    llm,
-    tools,
-    prompt,
-  })
+    // Get the prompt
+    const prompt = await pull("hwchase17/openai-functions-agent")
 
-  // Return the agent executor
-  return new AgentExecutor({
-    agent,
-    tools,
-    verbose: true,
-  })
+    // Create the agent
+    const agent = await createOpenAIFunctionsAgent({
+      llm,
+      tools,
+      prompt,
+    })
+
+    // Return the agent executor
+    return new AgentExecutor({
+      agent,
+      tools,
+      verbose: true,
+    })
+  } catch (error) {
+    console.error("Error initializing calendar agent:", error)
+    throw new Error(`Failed to initialize calendar agent: ${error.message}`)
+  }
 }
 
 // Helper functions
@@ -61,4 +70,3 @@ export const getTimezone = () => {
       return timezone
   }
 }
-

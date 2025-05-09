@@ -22,4 +22,3 @@ export const INDEXES = {
   YouTube: "youtube-data-index",
   LinkedIn: "linkedin-data-index", // This would be created when LinkedIn integration is ready
 }
-

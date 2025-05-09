@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       // Search Pinecone for relevant context
       const searchResults = await index.query({
         vector: queryEmbedding,
-        topK: 5,
+        topK: 3,
         includeMetadata: true,
       })
       console.log("Pinecone search results:", searchResults.matches.length)
@@ -224,4 +224,3 @@ ${formattedVideos}
 
 Based on your viewing history, you might be interested in videos related to this topic.`
 }
-

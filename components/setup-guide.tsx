@@ -59,4 +59,3 @@ export function SetupGuide({ missingKeys, onSetupComplete }: SetupGuideProps) {
     </Card>
   )
 }
-

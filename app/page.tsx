@@ -120,4 +120,3 @@ function AssistantCard({
     </Card>
   )
 }
-

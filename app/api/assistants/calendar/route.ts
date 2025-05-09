@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { initializeCalendarAgent, getCurrentDate, getTimezone } from "@/lib/calendar-agent"
+import { getCurrentDate, getTimezone } from "@/lib/calendar-agent"
 
 export async function POST(request: Request) {
   try {
@@ -8,17 +8,46 @@ export async function POST(request: Request) {
     console.log("User email:", email)
     console.log("Simulation mode:", simulationMode)
 
-    // If in simulation mode or if required environment variables are missing, use simulated responses
-    if (simulationMode || !process.env.OPENAI_API_KEY || !process.env.COMPOSIO_API_KEY) {
+    // Check if required environment variables are available
+    if (!process.env.OPENAI_API_KEY) {
+      console.error("Missing OPENAI_API_KEY environment variable")
+      return NextResponse.json(
+        {
+          response:
+            "I'm unable to process your request because the OpenAI API key is missing. Please contact the administrator.",
+          error: "Missing OPENAI_API_KEY",
+        },
+        { status: 500 },
+      )
+    }
+
+    if (!process.env.COMPOSIO_API_KEY) {
+      console.error("Missing COMPOSIO_API_KEY environment variable")
+      return NextResponse.json(
+        {
+          response:
+            "I'm unable to process your request because the Composio API key is missing. Please contact the administrator.",
+          error: "Missing COMPOSIO_API_KEY",
+        },
+        { status: 500 },
+      )
+    }
+
+    // If in simulation mode, use simulated responses
+    if (simulationMode) {
       console.log("Using simulation mode for calendar response")
       return NextResponse.json({
         response: generateSimulatedResponse(query, email),
       })
     }
 
-    // Otherwise, use the real calendar agent
+    // Otherwise, try to use the real calendar agent
     try {
       console.log("Using real calendar agent")
+
+      // Dynamically import the calendar agent to avoid build-time errors
+      const { initializeCalendarAgent } = await import("@/lib/calendar-agent")
+
       // Setup the agent
       const agentExecutor = await initializeCalendarAgent()
       const date = getCurrentDate()
@@ -44,6 +73,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         response: generateSimulatedResponse(query, email),
         note: "Falling back to simulation due to an error with the calendar agent",
+        error: error.message,
       })
     }
   } catch (error) {
@@ -190,4 +220,3 @@ To help you better, you can ask me to:
 What would you like me to do?`
   }
 }
-

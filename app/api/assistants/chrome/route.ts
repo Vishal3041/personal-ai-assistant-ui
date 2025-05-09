@@ -224,4 +224,3 @@ ${formattedSites}
 
 Based on your browsing history, you might be interested in websites related to this topic.`
 }
-

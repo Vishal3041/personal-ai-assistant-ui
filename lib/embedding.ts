@@ -18,4 +18,3 @@ export async function getEmbedding(text: string): Promise<number[]> {
     throw new Error(`Failed to generate embedding: ${error.message}`)
   }
 }
-

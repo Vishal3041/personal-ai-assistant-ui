@@ -36,4 +36,3 @@ export function detectDomainInQuery(query: string): string | null {
   const domainMatch = query.match(/\b(?:www\.)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})\b/i)
   return domainMatch ? domainMatch[1] : null
 }
-
