@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { LucideYoutube, LucideChrome, LucideLinkedin, LucideCalendar, Loader2 } from "lucide-react"
+import { LucideYoutube, LucideChrome, Loader2 } from "lucide-react"
 import { SetupGuide } from "@/components/setup-guide"
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           <AssistantCard
             title="YouTube Assistant"
             description="Chat with your YouTube history"
@@ -72,20 +72,6 @@ export default function Home() {
             description="Chat with your Chrome browsing history"
             icon={<LucideChrome className="h-8 w-8 text-blue-500" />}
             href="/assistants/chrome"
-          />
-
-          <AssistantCard
-            title="LinkedIn Assistant"
-            description="Chat with your LinkedIn data"
-            icon={<LucideLinkedin className="h-8 w-8 text-blue-700" />}
-            href="/assistants/linkedin"
-          />
-
-          <AssistantCard
-            title="Calendar Assistant"
-            description="Manage your calendar with AI"
-            icon={<LucideCalendar className="h-8 w-8 text-green-600" />}
-            href="/assistants/calendar"
           />
         </div>
       </div>
