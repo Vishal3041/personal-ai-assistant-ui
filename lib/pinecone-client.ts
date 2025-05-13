@@ -20,5 +20,5 @@ export const getPineconeClient = () => {
 export const INDEXES = {
   Chrome: "chrome-history-index",
   YouTube: "youtube-data-index",
-  LinkedIn: "linkedin-data-index", // This would be created when LinkedIn integration is ready
+  // LinkedIn index removed as it's not needed
 }

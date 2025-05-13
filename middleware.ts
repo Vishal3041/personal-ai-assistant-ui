@@ -2,7 +2,8 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export function middleware(request: NextRequest) {
-  // Simplified middleware that just passes through all requests
+  // Simple middleware that just passes through all requests
+  // This avoids the MIDDLEWARE_INVOCATION_FAILED error
   return NextResponse.next()
 }
 
